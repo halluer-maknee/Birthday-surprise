@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday 💜</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at top, #9b59b6, #5b247a 45%, #24102f);
+    color: white;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.heart {
+    position: absolute;
+    color: #ffb6e6;
+    animation: floatHeart linear infinite;
+    opacity: .75;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .8;
+    }
+
+    100% {
+        transform: translateY(-15vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.rose {
+    position: absolute;
+    font-size: 35px;
+    animation: roseFloat 7s ease-in-out infinite;
+    opacity: .65;
+}
+
+@keyframes roseFloat {
+
+    0%,100% {
+        transform: translateY(0) rotate(-10deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(10deg);
+    }
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    position: absolute;
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 25px;
+
+    text-align: center;
+}
+
+.page.active {
+    display: flex;
+    animation: pageIn .7s ease;
+}
+
+@keyframes pageIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   UNIVERSAL TEXT BOX
+========================= */
+
+.text-box {
+
+    background: rgba(35, 10, 50, .72);
+
+    border: 1px solid rgba(255,255,255,.3);
+
+    backdrop-filter: blur(15px);
+
+    -webkit-backdrop-filter: blur(15px);
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    width: min(92vw, 650px);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35),
+        inset 0 0 20px rgba(255,255,255,.05);
+}
+
+.text-box h1,
+.text-box h2,
+.text-box p {
+    text-shadow: 0 2px 5px rgba(0,0,0,.6);
+}
+
+h1 {
+    font-size: clamp(28px, 7vw, 52px);
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: clamp(22px, 5vw, 35px);
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.7;
+}
+
+
+/* =========================
+   ENVELOPE
+========================= */
+
+.envelope-container {
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+.envelope {
+    width: 280px;
+    height: 180px;
+
+    position: relative;
+
+    background: #f7d9e9;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.5);
+
+    transition: .5s;
+}
+
+.envelope:hover {
+    transform: scale(1.06);
+}
+
+.envelope::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 100px solid #eab8d4;
+
+    transform-origin: top;
+
+    transition: .8s;
+
+    z-index: 3;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+.envelope::after {
+
+    content: "💌";
+
+    position: absolute;
+
+    font-size: 55px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.envelope-label {
+
+    margin-top: 15px;
+
+    background: rgba(25,5,35,.8);
+
+    padding: 10px 18px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    display: inline-block;
+}
+
+
+/* =========================
+   STITCH
+========================= */
+
+.stitch {
+
+    width: 180px;
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 5px solid white;
+
+    margin: 15px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.5);
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.next-btn {
+
+    border: none;
+
+    margin-top: 25px;
+
+    padding: 13px 28px;
+
+    border-radius: 30px;
+
+    background: #ff8fd8;
+
+    color: #42133f;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.35);
+
+    transition: .3s;
+}
+
+.next-btn:hover {
+
+    transform: scale(1.08);
+
+    background: #ffc4ed;
+}
+
+
+/* =========================
+   DIARY
+========================= */
+
+.lock {
+
+    font-size: 90px;
+
+    cursor: pointer;
+
+    margin: 25px;
+
+    transition: .5s;
+
+    filter:
+        drop-shadow(0 10px 15px rgba(0,0,0,.4));
+}
+
+.lock:hover {
+
+    transform:
+        scale(1.15)
+        rotate(-5deg);
+}
+
+.diary {
+
+    display: none;
+
+    width: min(92vw, 700px);
+
+    max-height: 62vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8e8,
+            #f6dfbd
+        );
+
+    color: #4b3025;
+
+    padding: 35px;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.55);
+
+    text-align: left;
+
+    animation: bookOpen 1s ease;
+}
+
+.diary.show {
+    display: block;
+}
+
+.diary h2 {
+
+    text-align: center;
+
+    color: #8d4165;
+
+    margin-bottom: 20px;
+}
+
+.diary p {
+
+    margin-bottom: 15px;
+
+    line-height: 1.8;
+}
+
+@keyframes bookOpen {
+
+    from {
+
+        transform:
+            rotateY(90deg)
+            scale(.5);
+
+        opacity: 0;
+    }
+
+    to {
+
+        transform:
+            rotateY(0)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   CAKE
+========================= */
+
+.cake {
+
+    width: 230px;
+    height: 150px;
+
+    position: relative;
+
+    margin: 40px auto;
+
+    cursor: pointer;
+
+    filter:
+        drop-shadow(0 15px 20px rgba(0,0,0,.4));
+}
+
+.cake-bottom {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 230px;
+    height: 80px;
+
+    background: #9b4dca;
+
+    border-radius:
+        10px 10px 20px 20px;
+}
+
+.cake-middle {
+
+    position: absolute;
+
+    bottom: 55px;
+    left: 15px;
+
+    width: 200px;
+    height: 55px;
+
+    background: #ffb6d9;
+
+    border-radius: 10px;
+}
+
+.cake-top {
+
+    position: absolute;
+
+    bottom: 90px;
+    left: 30px;
+
+    width: 170px;
+    height: 45px;
+
+    background: #fff0f7;
+
+    border-radius: 50%;
+}
+
+.candle {
+
+    position: absolute;
+
+    bottom: 130px;
+    left: 105px;
+
+    width: 18px;
+    height: 55px;
+
+    background: #ffd166;
+
+    border-radius: 5px;
+}
+
+.flame {
+
+    position: absolute;
+
+    top: -28px;
+    left: 0;
+
+    font-size: 25px;
+
+    animation: flame .6s infinite alternate;
+}
+
+@keyframes flame {
+
+    from {
+        transform: scale(.9);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+}
+
+.cake.sliced .cake-top {
+
+    transform:
+        rotate(-12deg)
+        translateX(-25px);
+
+    transition: 1s;
+}
+
+.cake.sliced .cake-middle {
+
+    transform:
+        rotate(8deg)
+        translateX(30px);
+
+    transition: 1s;
+}
+
+
+/* =========================
+   WISHES
+========================= */
+
+.wishes {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    max-width: 700px;
+
+    padding: 20px;
+
+    background: rgba(30,8,45,.5);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(12px);
+}
+
+.wish {
+
+    width: 125px;
+    height: 100px;
+
+    border: 1px solid rgba(255,255,255,.3);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.16);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    transition: .3s;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.6);
+}
+
+.wish:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.05);
+
+    background:
+        rgba(255,255,255,.3);
+}
+
+.wish.used {
+    display: none;
+}
+
+
+/* =========================
+   WISH POPUP
+========================= */
+
+.wish-popup {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(15,3,25,.82);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    z-index: 20;
+}
+
+.wish-box {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff1fb,
+            #f5d9ff
+        );
+
+    color: #4d2250;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    max-width: 500px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.5);
+
+    animation: popup .4s ease;
+}
+
+.wish-box h2 {
+
+    color: #7d347c;
+
+    margin-bottom: 15px;
+}
+
+@keyframes popup {
+
+    from {
+        transform: scale(.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   FINAL PAGE
+========================= */
+
+.final-card {
+
+    max-width: 650px;
+
+    background:
+        rgba(35,8,50,.78);
+
+    backdrop-filter: blur(15px);
+
+    padding: 35px;
+
+    border-radius: 30px;
+
+    border:
+        1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.5);
+}
+
+.final-heart {
+
+    font-size: 80px;
+
+    animation:
+        heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+audio {
+
+    width: 100%;
+
+    margin-top: 20px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px) {
+
+    .envelope {
+
+        width: 230px;
+        height: 150px;
+    }
+
+    .envelope::before {
+
+        border-left-width: 115px;
+        border-right-width: 115px;
+    }
+
+    .wish {
+
+        width: 105px;
+    }
+
+    .diary {
+
+        padding: 22px;
+    }
+
+    .text-box {
+
+        padding: 20px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     FLOATING BACKGROUND
+========================= -->
+
+<div class="background" id="background"></div>
+
+
+<!-- =========================
+     PAGE 1
+========================= -->
+
+<section class="page active" id="page1">
+
+    <div class="text-box">
+
+        <h1>
+            💜 A Little Surprise For You 💜
+        </h1>
+
+        <p>
+            There's something waiting inside this envelope...
+        </p>
+
+        <div
+            class="envelope-container"
+            onclick="openEnvelope()">
+
+            <div
+                class="envelope"
+                id="envelope">
+            </div>
+
+            <div class="envelope-label">
+                Tap the envelope to open 💌
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BIRTHDAY MESSAGE
+========================= -->
+
+<section
+    class="page"
+    id="messagePage">
+
+    <div class="text-box">
+
+        <h1>
+            🎂 Happy Birthday 🎂
+        </h1>
+
+        <img
+            class="stitch"
+            src="stitch.jpg"
+            alt="Stitch">
+
+        <h2>
+            Happy Birthday to My Favorite Stranger 💜
+        </h2>
+
+        <p>
+            Today is your special day, so I wanted to make
+            something a little different for you.
+            I hope this small surprise puts a smile on your
+            face and makes your birthday a little more special. 🌷
+        </p>
+
+        <button
+            class="next-btn"
+            onclick="goToPage(2)">
+
+            Continue 💜
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 2
+========================= -->
+
+<section
+    class="page"
+    id="page2">
+
+    <div class="text-box">
+
+        <h1>
+            🔐 My Secret Diary
+        </h1>
+
+        <p>
+            There is something hidden inside...
+        </p>
+
+        <div
+            class="lock"
+            id="lock"
+            onclick="unlockDiary()">
+
+            🔒
+
+        </div>
+
+        <div
+            class="diary"
+            id="diary">
+
+            <h2>
+                Dear You, 🌷
+            </h2>
+
+            <p>
+                I don't really know where to begin, but since this
+                is my little secret diary, I guess I can be honest here.
+            </p>
+
+            <p>
+                You became someone special to me in a way I didn't
+                really expect. Maybe it started with simple conversations,
+                little moments, random laughs, or simply the way you
+                make ordinary days feel a little different.
+            </p>
+
+            <p>
+                I may not always know the perfect words to say,
+                but I want you to know that I genuinely appreciate
+                having you in my life.
+            </p>
+
+            <p>
+                On your birthday, I hope you realize how much you
+                deserve happiness, peaceful days, genuine smiles,
+                and people who appreciate you for exactly who you are.
+            </p>
+
+            <p>
+                Whatever happens in the future, I hope this little
+                memory stays as something that made you smile.
+            </p>
+
+            <p>
+                And maybe someday, when you look back at this,
+                you'll remember that someone once made a whole
+                little website just to make your birthday special. 💜
+            </p>
+
+            <p>
+                Happy birthday, stranger. 🌹
+            </p>
+
+        </div>
+
+        <button
+            class="next-btn"
+            id="diaryNext"
+            style="display:none"
+            onclick="goToPage(3)">
+
+            Next → 🎂
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 3
+========================= -->
+
+<section
+    class="page"
+    id="page3">
+
+    <div class="text-box">
+
+        <h1>
+            🎂 Time for a Cake!
+        </h1>
+
+        <p>
+            Make a wish... then slice the cake! 💜
+        </p>
+
+        <div
+            class="cake"
+            id="cake"
+            onclick="sliceCake()">
+
+            <div class="cake-bottom"></div>
+
+            <div class="cake-middle"></div>
+
+            <div class="cake-top"></div>
+
+            <div class="candle">
+
+                <div class="flame">
+                    🔥
+                </div>
+
+            </div>
+
+        </div>
+
+        <p id="cakeText">
+
+            Click the cake to slice it 🍰
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 4
+========================= -->
+
+<section
+    class="page"
+    id="page4">
+
+    <div class="text-box">
+
+        <h1>
+            🌹 Five Little Wishes 🌹
+        </h1>
+
+        <p>
+            Open them one by one...
+        </p>
+
+        <br>
+
+        <div class="wishes">
+
+            <button
+                class="wish"
+                onclick="showWish(this,1)">
+
+                🌷<br>
+                Wish #1
+
+            </button>
+
+            <button
+                class="wish"
+                onclick="showWish(this,2)">
+
+                💜<br>
+                Wish #2
+
+            </button>
+
+            <button
+                class="wish"
+                onclick="showWish(this,3)">
+
+                ✨<br>
+                Wish #3
+
+            </button>
+
+            <button
+                class="wish"
+                onclick="showWish(this,4)">
+
+                🌹<br>
+                Wish #4
+
+            </button>
+
+            <button
+                class="wish"
+                onclick="showWish(this,5)">
+
+                💖<br>
+                Wish #5
+
+            </button>
+
+        </div>
+
+        <button
+            class="next-btn"
+            id="finalButton"
+            style="display:none"
+            onclick="goToPage(5)">
+
+            One Last Thing... 🎵
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WISH POPUP
+========================= -->
+
+<div
+    class="wish-popup"
+    id="wishPopup">
+
+    <div class="wish-box">
+
+        <h2 id="wishTitle"></h2>
+
+        <p id="wishText"></p>
+
+        <button
+            class="next-btn"
+            onclick="closeWish()">
+
+            Aww 💜
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     PAGE 5
+========================= -->
+
+<section
+    class="page"
+    id="page5">
+
+    <div class="final-card">
+
+        <div class="final-heart">
+            💜
+        </div>
+
+        <h1>
+            Happy Birthday 🌷
+        </h1>
+
+        <h2>
+            To My Favorite Stranger
+        </h2>
+
+        <br>
+
+        <p>
+            And that's the end of my little birthday surprise.
+        </p>
+
+        <br>
+
+        <p>
+            I hope today gives you countless reasons to smile,
+            beautiful memories to keep, and people around you
+            who remind you how special you are.
+        </p>
+
+        <br>
+
+        <p>
+            Thank you for being you. 💜
+        </p>
+
+        <br>
+
+        <p>
+            Enjoy your day, birthday girl. 🎂🌹
+        </p>
+
+        <audio controls loop>
+
+            <source
+                src="love.mp3"
+                type="audio/mpeg">
+
+            Your browser does not support audio.
+
+        </audio>
+
+        <p style="margin-top:15px;font-size:13px;">
+
+            🎵 A little song for you
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   BACKGROUND HEARTS
+========================= */
+
+const background =
+    document.getElementById("background");
+
+for(let i = 0; i < 35; i++){
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML =
+        ["💜","💗","💕","💖","♡"]
+        [Math.floor(Math.random()*5)];
+
+    heart.style.left =
+        Math.random()*100 + "%";
+
+    heart.style.animationDuration =
+        (6 + Math.random()*8) + "s";
+
+    heart.style.animationDelay =
+        Math.random()*8 + "s";
+
+    heart.style.fontSize =
+        (15 + Math.random()*25) + "px";
+
+    background.appendChild(heart);
+}
+
+
+/* =========================
+   ROSES
+========================= */
+
+for(let i = 0; i < 10; i++){
+
+    const rose =
+        document.createElement("div");
+
+    rose.className = "rose";
+
+    rose.innerHTML = "🌹";
+
+    rose.style.left =
+        Math.random()*100 + "%";
+
+    rose.style.top =
+        Math.random()*100 + "%";
+
+    rose.style.animationDelay =
+        Math.random()*5 + "s";
+
+    background.appendChild(rose);
+}
+
+
+/* =========================
+   PAGE SWITCH
+========================= */
+
+function goToPage(number){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page =>
+            page.classList.remove("active")
+        );
+
+    document
+        .getElementById("page" + number)
+        .classList.add("active");
+}
+
+
+/* =========================
+   ENVELOPE
+========================= */
+
+function openEnvelope(){
+
+    const envelope =
+        document.getElementById("envelope");
+
+    envelope.classList.add("open");
+
+    setTimeout(() => {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(page =>
+                page.classList.remove("active")
+            );
+
+        document
+            .getElementById("messagePage")
+            .classList.add("active");
+
+    },900);
+}
+
+
+/* =========================
+   DIARY
+========================= */
+
+function unlockDiary(){
+
+    const lock =
+        document.getElementById("lock");
+
+    const diary =
+        document.getElementById("diary");
+
+    lock.innerHTML = "🔓";
+
+    setTimeout(() => {
+
+        diary.classList.add("show");
+
+        document
+            .getElementById("diaryNext")
+            .style.display = "inline-block";
+
+    },500);
+}
+
+
+/* =========================
+   CAKE
+========================= */
+
+let cakeCut = false;
+
+function sliceCake(){
+
+    if(cakeCut) return;
+
+    cakeCut = true;
+
+    const cake =
+        document.getElementById("cake");
+
+    cake.classList.add("sliced");
+
+    document
+        .getElementById("cakeText")
+        .innerHTML =
+        "Your wish has been made! 💜✨";
+
+    setTimeout(() => {
+
+        goToPage(4);
+
+    },1800);
+}
+
+
+/* =========================
+   FIVE WISHES
+========================= */
+
+let wishesOpened = 0;
+
+const wishes = {
+
+    1: {
+
+        title: "🌷 My First Wish",
+
+        text:
+        "I wish that you always have reasons to smile, even on the days when things don't go exactly as planned."
+
+    },
+
+    2: {
+
+        title: "💜 My Second Wish",
+
+        text:
+        "I wish that you meet people who genuinely appreciate you, support you, and make you feel comfortable being yourself."
+
+    },
+
+    3: {
+
+        title: "✨ My Third Wish",
+
+        text:
+        "I wish that your dreams slowly become reality and that every step you take brings you closer to the life you want."
+
+    },
+
+    4: {
+
+        title: "🌹 My Fourth Wish",
+
+        text:
+        "I wish that you collect beautiful memories this year—little moments that you'll remember with a smile years from now."
+
+    },
+
+    5: {
+
+        title: "💖 My Last Wish",
+
+        text:
+        "And my last wish is simply for you to be happy. Wherever life takes you, I hope you always find something worth smiling about."
+
+    }
+
+};
+
+
+function showWish(button, number){
+
+    document
+        .getElementById("wishTitle")
+        .innerText =
+        wishes[number].title;
+
+    document
+        .getElementById("wishText")
+        .innerText =
+        wishes[number].text;
+
+    document
+        .getElementById("wishPopup")
+        .style.display = "flex";
+
+    button.classList.add("current");
+}
+
+
+function closeWish(){
+
+    document
+        .getElementById("wishPopup")
+        .style.display = "none";
+
+    const current =
+        document.querySelector(".wish.current");
+
+    if(current){
+
+        current.classList.remove("current");
+
+        current.classList.add("used");
+
+        wishesOpened++;
+
+    }
+
+    if(wishesOpened >= 5){
+
+        document
+            .getElementById("finalButton")
+            .style.display = "inline-block";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
